@@ -19,7 +19,7 @@
 #include <readline/readline.h>
 
 #include "error_functions.h"
-#include "capability.h"
+#include "function_header.h"
 
 typedef enum { FALSE, TRUE } Boolean;
 #define min(m,n) ((m) < (n) ? (m) : (n))
