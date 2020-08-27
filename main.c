@@ -50,20 +50,32 @@ int main(int argc, char *argv[]){
 
 
 				if(pipe!=NULL){
-					printf("%s %s\n", pipe[0], pipe[1]);
-				}else if(ou!=NULL){
-					printf("%s %s\n", ou[0], ou[1]);
-				}else if(in!=NULL){
-					printf("%s %s\n", in[0], in[1]);
-				}else{
-					status = executeCommand(line);
-					
-					if(status==-3 || status==-1)
-						continue;
-					if(status==-2){
-						errMsg("command cannot be executed, some error occured\n");
+					if(pipe[1]==NULL){
+						fprintf(stdout, "%s", "parse error near '\\n'\n");
 						continue;
 					}
+					status = executePipeCommands(pipe[0], pipe[1]);
+				}else if(ou!=NULL){
+					if(ou[1]==NULL){
+						fprintf(stdout, "%s", "parse error near '\\n'\n");
+						continue;
+					}
+					status = executeOutputCommand(ou[0], ou[1]);
+				}else if(in!=NULL){
+					if(in[1]==NULL){
+						fprintf(stdout, "%s", "parse error near '\\n'\n");
+						continue;
+					}
+					status = executeInputCommand(in[0], in[1]);
+				}else{
+					status = executeCommand(line);
+				}
+				
+				if(status==-3 || status==-1)
+					continue;
+				if(status==-2){
+					errMsg("command cannot be executed, some error occured\n");
+					continue;
 				}
 			}
 

@@ -28,5 +28,8 @@ char *removeWhiteSpaces(char *line);
 #define EXECUTE_H
 
 int executeCommand(char *command);
+int executePipeCommands(char *command1, char *command2);
+int executeOutputCommand(char *command, char *filename);
+int executeInputCommand(char *command, char *filename);
 
 #endif
