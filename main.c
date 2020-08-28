@@ -3,8 +3,14 @@
 
 static char *read_line = (char *)NULL;
 
-void initialize(){
-  char *path;
+static void signal_handler(int sig){
+	printf("\e[0;32m\n$ \e[0m");
+}
+
+void initialize(char *name){
+  struct sigaction sa;
+	char *path;
+	pid_t pid;
 
 	/* Changing the environment variables */
 	path = malloc(512*sizeof(char));
@@ -16,11 +22,31 @@ void initialize(){
 
   /* Setting commands history environment */
 	using_history();
+
+	/* Handling signals */
+	sa.sa_handler = signal_handler;
+	sigemptyset(&sa.sa_mask);
+	sa.sa_flags = 0;
+	if(sigaction(SIGINT, &sa, NULL)==-1)
+		errExit("sigaction");
+	sa.sa_handler = SIG_IGN;
+	if(sigaction(SIGQUIT, &sa, NULL)==-1)
+		errExit("sigaction");
+	if(sigaction(SIGTSTP, &sa, NULL)==-1)
+		errExit("sigaction");
+
+	printf("\033[2J");
+	printf("\033[H");
+	pid = getpid();
+	printf("==%ld== This is a MiniShell currently in development.\n", (long)pid);
+	printf("==%ld== Copyright (C) 2020-2033, and GNU GPL'd, by Rahul Jakhar et al.\n", (long)pid);
+	printf("==%ld== Memcheck: No memory leak detected(actually it checked nothing).\n", (long)pid);
+	printf("==%ld== Command: %s\n", (long)pid, name);
 }
 
 int main(int argc, char *argv[]){
 
-  initialize();
+  initialize(argv[0]);
 
   for(;;){
     if(read_line){
@@ -74,7 +100,7 @@ int main(int argc, char *argv[]){
 				if(status==-3 || status==-1)
 					continue;
 				if(status==-2){
-					errMsg("command cannot be executed, some error occured\n");
+					fprintf(stderr, "%s", "command cannot be executed, some error occured\n");
 					continue;
 				}
 			}

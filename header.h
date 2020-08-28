@@ -14,6 +14,7 @@
 
 #include <errno.h>
 #include <string.h> 
+#include <signal.h>
 
 #include <readline/history.h>
 #include <readline/readline.h>

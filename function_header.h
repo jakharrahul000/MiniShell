@@ -33,3 +33,28 @@ int executeOutputCommand(char *command, char *filename);
 int executeInputCommand(char *command, char *filename);
 
 #endif
+
+/* builtin.c header */
+#ifndef BUILTIN_H
+#define BUILTIN_H
+
+int checkBuiltin(char *cmd);
+int executeBuiltin(int ind, char **cmd);
+
+#endif
+
+/* builtin_commands */
+#ifndef BUILTIN_COMMANDS_H
+#define BUILTIN_COMMANDS_H
+
+int cd_(int argc, char *argv[]);
+int echo_(int argc, char *argv[]);
+int exit_(int argc, char *argv[]);
+int help_(int argc, char *argv[]);
+int jobs_(int argc, char *argv[]);
+int kill_(int argc, char *argv[]);
+int printf_(int argc, char *argv[]);
+int pwd_(int argc, char *argv[]);
+int umask_(int argc, char *argv[]);
+
+#endif

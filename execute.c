@@ -65,7 +65,7 @@ char *pathExist(char *cmd){
 int executeCommand(char *command){
 	char **cmd, *cmdpath;
 	pid_t pid, cpid;
-	int status;
+	int status, ind;
 
 	command = removeWhiteSpaces(command);
 	if(command==NULL)
@@ -74,7 +74,12 @@ int executeCommand(char *command){
 	cmd = parseCommand(command);
 	if(cmd==NULL)
 		return -2;
-		
+	
+	if((ind = checkBuiltin(cmd[0]))!=-1){
+		return executeBuiltin(ind, cmd);
+	}
+
+
 	cmdpath = pathExist(cmd[0]);
 	if(cmdpath==NULL){
 		if(errno==2)
