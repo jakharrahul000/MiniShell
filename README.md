@@ -1,13 +1,7 @@
 # MiniShell
 A program just like linux shell
 
-#under development
 lreadline, libcap
-
+#under development
 #To-Do
-  Batch Mode
-  Built-In commands
-  Signal Handling
-  PS1
-  Background process
-  free
+  Batch Mode, Signal Handling, Background process, free
