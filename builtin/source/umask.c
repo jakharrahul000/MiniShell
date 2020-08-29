@@ -22,8 +22,8 @@ void printMask(mode_t perm){
 
 }
 
-int main(int argc, char *argv[]){
-	int opt, len;
+int umask_(int argc, char *argv[]){
+	int opt, len, usr, grp, oth;
 	mode_t mode;
 	char *arg;
 
@@ -64,7 +64,43 @@ int main(int argc, char *argv[]){
 			return -1;
 		}
 	}
+	
+	mode = 0;
+	oth = arg[len-1] - '0';
+	if(len>=2)grp = arg[len-2] - '0';
+	if(len>=3)usr = arg[len-3] - '0';
 
+	// For user
+	if(len>=3){
+		if(usr==1)mode|=(S_IXUSR);
+	  if(usr==2)mode|=(S_IWUSR);
+	  if(usr==3)mode|=(S_IXUSR | S_IWUSR);
+	  if(usr==4)mode|=(S_IRUSR);
+	  if(usr==5)mode|=(S_IXUSR | S_IRUSR);
+	  if(usr==6)mode|=(S_IWUSR | S_IRUSR);
+	  if(usr==7)mode|=(S_IXUSR | S_IWUSR | S_IRUSR);
+	}
 
+	// For grp
+	if(len>=2){
+		if(grp==1)mode|=(S_IXGRP);
+	  if(grp==2)mode|=(S_IWGRP);
+	  if(grp==3)mode|=(S_IXGRP | S_IWGRP);
+	  if(grp==4)mode|=(S_IRGRP);
+	  if(grp==5)mode|=(S_IXGRP | S_IRGRP);
+	  if(grp==6)mode|=(S_IWGRP | S_IRGRP);
+	  if(grp==7)mode|=(S_IXGRP | S_IWGRP | S_IRGRP);
+	}
 
+	// For others
+	if(oth==1)mode|=(S_IXOTH);
+	if(oth==2)mode|=(S_IWOTH);
+	if(oth==3)mode|=(S_IXOTH | S_IWOTH);
+	if(oth==4)mode|=(S_IROTH);
+	if(oth==5)mode|=(S_IXOTH | S_IROTH);
+	if(oth==6)mode|=(S_IWOTH | S_IROTH);
+	if(oth==7)mode|=(S_IXOTH | S_IWOTH | S_IROTH);
+
+	umask(mode);
+	return -1;
 }

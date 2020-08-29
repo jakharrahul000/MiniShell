@@ -41,8 +41,7 @@ int executeBuiltin(int ind, char **cmd){
 		case 7:
 			return pwd_(argc, cmd);
 		case 8:
-			//return umask_(argc, cmd);
-			break;
+			return umask_(argc, cmd);
 		case 9:
 			printf("\033[2J");
 			printf("\033[H");
