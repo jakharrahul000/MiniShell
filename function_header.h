@@ -58,3 +58,12 @@ int pwd_(int argc, char *argv[]);
 int umask_(int argc, char *argv[]);
 
 #endif
+
+
+/* helper.c header */
+/*
+#ifndef HELPER_H
+#define HELPER_H
+
+#endif
+*/

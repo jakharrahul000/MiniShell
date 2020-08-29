@@ -4,7 +4,6 @@
 #define _GNU_SOURCE
 #define _XOPEN_SOURCE
 
-#include <sys/types.h> 
 #include <stdio.h>
 #include <stdlib.h> 
 #include <unistd.h>
@@ -15,6 +14,9 @@
 #include <errno.h>
 #include <string.h> 
 #include <signal.h>
+
+#include <sys/stat.h>
+#include <sys/types.h> 
 
 #include <readline/history.h>
 #include <readline/readline.h>

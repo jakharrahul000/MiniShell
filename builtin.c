@@ -39,11 +39,14 @@ int executeBuiltin(int ind, char **cmd){
 			//return printf_(argc, cmd);
 			break;
 		case 7:
-			//return pwd_(argc, cmd);
-			break;
+			return pwd_(argc, cmd);
 		case 8:
 			//return umask_(argc, cmd);
 			break;
+		case 9:
+			printf("\033[2J");
+			printf("\033[H");
+			return -1;
 		default:
 			return -2;
 	}	

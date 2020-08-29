@@ -7,6 +7,7 @@ static char *builtIn[] = {
 	"kill",
 	"printf",
 	"pwd",
-	"umask"
+	"umask",
+	"clear"
 };
-#define len 9
+#define len 10
