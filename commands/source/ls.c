@@ -260,7 +260,7 @@ int main(int argc, char *argv[]){
 				flagn=1;
 				break;
 			default:
-				fprintf(stderr, "usageErr: ls -[aAgGilLn] [name]\n");
+				fprintf(stderr, "usageErr: ls -[agGilLn] [name]\n");
 				return -1;
 		}
 	}
