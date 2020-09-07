@@ -81,7 +81,7 @@ int main(int argc, char *argv[]){
 			case ':':
 				return -1;
 			default:
-				fprintf(stderr, "usageErr: ls -[mv] [name]\n");
+				fprintf(stderr, "usageErr: mkdir -[mv] [name]\n");
 				return -1;
 		}
 	}

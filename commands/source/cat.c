@@ -17,7 +17,7 @@ int main(int argc, char *argv[]){
 				flagn=1;
 				break;
 			default:
-				fprintf(stderr, "usageErr: ls -[n] [name]\n");
+				fprintf(stderr, "usageErr: cat -[n] [name]\n");
 				return -1;
 		}
 	}

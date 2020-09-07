@@ -37,7 +37,7 @@ int main(int argc, char *argv[]){
 			case ':':
 				return -1;
 			default:
-				fprintf(stderr, "usageErr: ls -[aAgGilLn] [name]\n");
+				fprintf(stderr, "usageErr: touch -[aAgGilLn] [name]\n");
 				return -1;
 		}
 	}

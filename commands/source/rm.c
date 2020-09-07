@@ -21,7 +21,7 @@ int main(int argc, char *argv[]){
 				flagv=1;
 				break;
 			default:
-				fprintf(stderr, "usageErr: ls -[fidv] [name]\n");
+				fprintf(stderr, "usageErr: rm -[fidv] [name]\n");
 				return -1;
 		}
 	}
