@@ -35,6 +35,13 @@ void initialize(char *name){
 	if(sigaction(SIGTSTP, &sa, NULL)==-1)
 		errExit("sigaction");
 
+	/* Droping privilages */
+	if(seteuid(getuid())==-1)
+		errExit("seteuid");
+
+	/* Set timer */
+	timer = 0;
+	
 	printf("\033[2J");
 	printf("\033[H");
 	pid = getpid();

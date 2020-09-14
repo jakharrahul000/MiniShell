@@ -14,6 +14,7 @@
 #include <errno.h>
 #include <string.h> 
 #include <signal.h>
+#include <time.h>
 
 #include <sys/stat.h>
 #include <sys/types.h> 
@@ -23,9 +24,6 @@
 
 #include "error_functions.h"
 #include "function_header.h"
-
-typedef enum { FALSE, TRUE } Boolean;
-#define min(m,n) ((m) < (n) ? (m) : (n))
-#define max(m,n) ((m) > (n) ? (m) : (n))
+#include "variable_header.h"
 
 #endif

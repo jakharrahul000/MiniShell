@@ -11,18 +11,21 @@ int modifyCap(int capability, int setting){
   capList[0] = capability;
   if (cap_set_flag(caps, CAP_EFFECTIVE, 1, capList, setting) == -1) {
     cap_free(caps);
+		printf("error = %d\n", 1);
     return -1;
   }
 
-   if (cap_set_proc(caps) == -1) {
-     cap_free(caps);
-     return -1;
-   }
+  if (cap_set_proc(caps) == -1) {
+    cap_free(caps);
+    errMsg("cap_set_proc");
+		return -1;
+  }
 
-   if (cap_free(caps) == -1)
-     return -1;
-     
-   return 0;
+  if (cap_free(caps) == -1){
+		printf("error = %d\n", 3);
+    return -1;
+  }
+	return 0;
 }
 
 int raiseCap(int capability){
